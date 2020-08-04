@@ -28,37 +28,43 @@ function generatePassword() {
     var passLower = confirm("Do you want to include Lowercase letters?");
     var passNumerical = confirm("Do you want to add numbers to your password?");
 
-    var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-    var numerical = '0123456789';
-    var specialChar = '!@#$%&*?/+-_~';
-    var passGen = '';
-
-    // Clearing password string //
-    password = '';
-
-
-    // Validating the selected password length is between 8 and 12 characters
-    // Combining chosen password criteria into one big string //
-    if (passSpecial === true) {
-      passGen = passGen.concat(specialChar);
+    if (passSpecial === false && passUpper === false && passLower === false && passNumerical === false) {
+      alert("You need to pick at least one character type for your password!!")
+      generatePassword();
     }
+    else {
+      var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+      var numerical = '0123456789';
+      var specialChar = '!@#$%&*?/+-_~';
+      var passGen = '';
 
-    if (passUpper === true) {
-      passGen = passGen.concat(upperCase);
-    }
+      // Clearing password string //
+      password = '';
 
-    if (passLower === true) {
-      passGen = passGen.concat(lowerCase);
-    }
 
-    if (passNumerical === true) {
-      passGen = passGen.concat(numerical);
-    }
+      // Validating the selected password length is between 8 and 12 characters
+      // Combining chosen password criteria into one big string //
+      if (passSpecial === true) {
+        passGen = passGen.concat(specialChar);
+      }
 
-    // Taking newly created string and selecting random characters from it //
-    for (i = 0; i < passLength; i++) {
-      password += passGen.charAt(Math.floor(Math.random() * passGen.length));
+      if (passUpper === true) {
+        passGen = passGen.concat(upperCase);
+      }
+
+      if (passLower === true) {
+        passGen = passGen.concat(lowerCase);
+      }
+
+      if (passNumerical === true) {
+        passGen = passGen.concat(numerical);
+      }
+
+      // Taking newly created string and selecting random characters from it //
+      for (i = 0; i < passLength; i++) {
+        password += passGen.charAt(Math.floor(Math.random() * passGen.length));
+      }
     }
 
   }
